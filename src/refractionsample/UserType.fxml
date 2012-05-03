@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+
+<HBox id="hBox1" fx:id="view" xmlns:fx="http://javafx.com/fxml" fx:controller="refractionsample.UserTypeController" alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <children>
+    <Label id="label1" fx:id="label" text="User Type" />
+    <HBox id="HBox" alignment="CENTER" spacing="5.0">
+    <!--ToggleGroup fx:id="group"-->
+      <RadioButton id="radioButton1" fx:id="radioGuest" text="Guest" group="$group"/>
+      <RadioButton id="radioButton2" fx:id="radioUser" text="User" group="$group"/>
+    </HBox>
+    <!--/ToggleGroup-->
+    </children>
+</HBox>
+
