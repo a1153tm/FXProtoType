@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+
+    <VBox fx:id="view" xmlns:fx="http://javafx.com/fxml" fx:controller="prototype.InputBoxesController" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <HBox id="hBox1" alignment="CENTER" prefWidth="300.0">
+          <children>
+            <Label id="label1" text="Name:" />
+            <TextField fx:id="textField" prefWidth="150.0" />
+          </children>
+        </HBox>
+        <HBox id="hBox2" alignment="CENTER" prefWidth="300.0">
+          <children>
+            <Label id="label2" text="Password:" />
+            <PasswordField fx:id="passwordField" prefWidth="150.0" />
+          </children>
+        </HBox>
+      </children>
+    </VBox>

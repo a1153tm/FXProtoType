@@ -15,16 +15,24 @@ public class LoginController extends Controller {
     private AnchorPane view;
             
     @FXML
-    public AnchorPane UserType;
+    private AnchorPane UserType;
+    
+    @FXML
+    private AnchorPane InputBoxes;
+    
+    @FXML
+    private AnchorPane CommandButtons;
     
     @FXController
     public UserTypeController UserTypeController;
     
+    @FXController
+    public InputBoxesController InputBoxesController;
+
+    @FXController
+    public CommandButtonsController CommandButtonsController;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }
-       
-    public void setUserType(Node node) {
-        UserType.getChildren().add(node);
     }
 }

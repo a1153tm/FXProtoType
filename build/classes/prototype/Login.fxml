@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml" fx:id="view" fx:controller="prototype.LoginController">
+<AnchorPane id="AnchorPane" fx:id="view" prefHeight="200.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml" fx:controller="prototype.LoginController">
   <children>
     <VBox id="vBox1" alignment="CENTER" prefHeight="200.0" prefWidth="320.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
@@ -15,9 +15,9 @@
             <Font name="System Bold" size="16.0" />
           </font>
         </Label>
-        <AnchorPane fx:id="UserType" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane fx:id="UserType" prefHeight="200.0" prefWidth="300.0" />
+        <AnchorPane fx:id="InputBoxes" prefHeight="200.0" prefWidth="300.0" />
+        <AnchorPane fx:id="CommandButtons" prefHeight="200.0" prefWidth="300.0" />
       </children>
     </VBox>
   </children>

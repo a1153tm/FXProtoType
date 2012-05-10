@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<HBox fx:id="view" xmlns:fx="http://javafx.com/fxml" fx:controller="prototype.CommandButtonsController" alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+  <children>
+    <Button fx:id="login" contentDisplay="CENTER" text="login" />
+    <Button fx:id="cancel" contentDisplay="CENTER" text="cancel" />
+  </children>
+</HBox>

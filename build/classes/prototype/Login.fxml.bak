@@ -17,7 +17,11 @@
         </Label>
         <AnchorPane fx:id="UserType" prefHeight="200.0" prefWidth="300.0" />
         <AnchorPane fx:id="InputBoxes" prefHeight="200.0" prefWidth="300.0" />
-        <AnchorPane fx:id="CommandButtons" prefHeight="200.0" prefWidth="300.0" />
+        <AnchorPane fx:id="commandButtons" prefHeight="200.0" prefWidth="300.0">
+          <children>
+            <Button id="button1" layoutX="66.0" layoutY="20.0" text="Button" />
+          </children>
+        </AnchorPane>
       </children>
     </VBox>
   </children>

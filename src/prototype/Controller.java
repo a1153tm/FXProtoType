@@ -39,7 +39,7 @@ public abstract class Controller implements Initializable {
 
     public final void addChild(Controller child) {
         addController(child);
-
+        
         addNode(getFieldName(child.getClass().getName()), child.getView());
     }
 
@@ -76,8 +76,6 @@ public abstract class Controller implements Initializable {
     protected List<Field> getControllerFields() {
         List<Field> fields = new ArrayList<Field>();
         for (Field f : getClass().getDeclaredFields()) {
-            //if (f.getName().endsWith("Controller"))
-            //    fields.add(f);
             for (Annotation an : f.getDeclaredAnnotations())
                 if (an instanceof FXController)
                     fields.add(f);
@@ -87,24 +85,28 @@ public abstract class Controller implements Initializable {
 
     protected final void addNode(String controllerName, Node node) {
         String nodeId = controllerName.replaceAll("Controller$", "");
-        Pane child = getPane(view, nodeId);
+        Pane child = getPane(nodeId);
         if (child == null)
             //ToDo:Throw custom exception
             System.err.println("child node:" + nodeId + " not found.");
         child.getChildren().add(node);
     }
 
-    protected List<Pane> targetPanes = new ArrayList<Pane>();
-    protected final Pane getPane(Pane pane, String nodeId) {
+    protected Pane getPane(String nodeId) {
+        List<Pane> targetPanes = new ArrayList<Pane>();
+        findPane(view, nodeId, targetPanes);
+        return targetPanes.isEmpty()? null : targetPanes.get(0);
+    }
+    
+    protected static void findPane(Pane pane, String nodeId, List<Pane> targetPanes) {
         for (Node node : pane.getChildren()) {
             if (Pane.class.isAssignableFrom(node.getClass())) {
                 if (node.getId() != null && node.getId().equals(nodeId))
                     //ToDo:Type check
                     targetPanes.add((Pane)node);
                 else
-                    getPane((Pane)node, nodeId);
+                    findPane((Pane)node, nodeId, targetPanes);
             }
         }
-        return targetPanes.isEmpty()? null : targetPanes.get(0);
     }
 }
