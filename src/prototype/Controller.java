@@ -1,5 +1,6 @@
 package prototype;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,8 +20,7 @@ public abstract class Controller implements Initializable {
     protected Pane view;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }
+    abstract public void initialize(URL url, ResourceBundle rb);
 
     public final Pane getView() {
         return view;
@@ -32,7 +32,7 @@ public abstract class Controller implements Initializable {
 
     public List<String> getChildren() {
         List<String> children = new ArrayList<String>();
-        for (Field f : getFields())
+        for (Field f : getControllerFields())
             children.add(f.getName().replaceAll("Controller$", ""));
         return children;
     }
@@ -43,7 +43,7 @@ public abstract class Controller implements Initializable {
         addNode(getFieldName(child.getClass().getName()), child.getView());
     }
 
-    private void addController(Controller child) {
+    protected void addController(Controller child) {
         Field field = getControllerField(getFieldName(child.getClass().getName()));
         if (field == null)
             //ToDo:Throw custom exception
@@ -60,29 +60,32 @@ public abstract class Controller implements Initializable {
         }
     }
 
-    private String getFieldName (String className) {
+    protected static String getFieldName (String className) {
         int idx = className.lastIndexOf('.') + 1;
         return className.substring(idx, className.length());
     }
     
-    private Field getControllerField(String fieldName) {
-        for (Field f : getFields()) {
+    protected Field getControllerField(String fieldName) {
+        for (Field f : getControllerFields()) {
             if (f.getName().equals(fieldName))
                 return f;
         }
         return null;
     }
 
-    private List<Field> getFields() {
+    protected List<Field> getControllerFields() {
         List<Field> fields = new ArrayList<Field>();
         for (Field f : getClass().getDeclaredFields()) {
-            if (f.getName().endsWith("Controller"))
-                fields.add(f);
+            //if (f.getName().endsWith("Controller"))
+            //    fields.add(f);
+            for (Annotation an : f.getDeclaredAnnotations())
+                if (an instanceof FXController)
+                    fields.add(f);
         }
         return fields;
     }
 
-    private final void addNode(String controllerName, Node node) {
+    protected final void addNode(String controllerName, Node node) {
         String nodeId = controllerName.replaceAll("Controller$", "");
         Pane child = getPane(view, nodeId);
         if (child == null)
@@ -91,8 +94,8 @@ public abstract class Controller implements Initializable {
         child.getChildren().add(node);
     }
 
-    private List<Pane> targetPanes = new ArrayList<Pane>();
-    private final Pane getPane(Pane pane, String nodeId) {
+    protected List<Pane> targetPanes = new ArrayList<Pane>();
+    protected final Pane getPane(Pane pane, String nodeId) {
         for (Node node : pane.getChildren()) {
             if (Pane.class.isAssignableFrom(node.getClass())) {
                 if (node.getId() != null && node.getId().equals(nodeId))

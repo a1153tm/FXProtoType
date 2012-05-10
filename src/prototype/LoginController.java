@@ -16,6 +16,8 @@ public class LoginController extends Controller {
             
     @FXML
     public AnchorPane UserType;
+    
+    @FXController
     public UserTypeController UserTypeController;
     
     @Override
